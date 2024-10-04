@@ -65,7 +65,7 @@ generate-users:
 	go run migrations/*.go
 
 # Migrate, build & run all steps
-run: run-migrations generate-sqlboiler build-grpc run-grpc
+run: generate-sqlboiler build-grpc run-grpc
 
 # Test
 test:
