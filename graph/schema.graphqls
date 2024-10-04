@@ -1,0 +1,39 @@
+type User {
+  id: ID!
+  email: String!
+  status: String!
+  createdAt: String!
+  modifiedAt: String!
+  contact: UserContact
+  addresses: [UserAddress]
+}
+
+type UserContact {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  phone: String!
+  userId: ID!
+}
+
+type UserAddress {
+  id: ID!
+  name: String!
+  prefix: String
+  streetAddress1: String!
+  streetAddress2: String
+  city: String!
+  state: String!
+  zipCode: String!
+  userId: ID!
+}
+
+type Query {
+  users(limit: Int, offset: Int): [User!]!
+}
+
+type Mutation {
+  createUser(email: String!, status: String!): User
+  createContact(userId: ID!, firstName: String!, lastName: String!, phone: String!): UserContact
+  createUserAddress(userId: ID!, name: String!, prefix: String, streetAddress1: String!, streetAddress2: String, city: String!, state: String!, zipCode: String!): UserAddress
+}

@@ -1,0 +1,88 @@
+syntax = "proto3";
+
+option go_package = "github.com/imijanur/graphql-grpc-server/proto";
+
+message User {
+    string id = 1;
+    string email = 2;
+    string status = 3;
+    string created_at = 4;
+    string updated_at = 5;
+}
+
+message UserContact {
+    string id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string phone = 4;
+    string user_id = 5;
+}
+
+message UserAddress {
+    string id = 1;
+    string name = 2;
+    string prefix = 3;
+    string street_address_1 = 4;
+    string street_address_2 = 5;
+    string city = 6;
+    string state = 7;
+    string zip_code = 8;
+    string user_id = 9;
+}
+
+message GetUsersRequest {
+    int32 limit = 1;
+    int32 offset = 2;
+}
+
+message CompleteUser {
+    User user = 1;
+    UserContact contact = 2;
+    repeated UserAddress addresses = 3;
+}
+
+message GetUsersResponse {
+    repeated CompleteUser users = 1;
+}
+
+message CreateUserRequest {
+    string email = 1;
+    string status = 2;
+}
+  
+message CreateUserResponse {
+    User user = 1;
+}
+
+message CreateContactRequest {
+    string firstName = 1;
+    string lastName = 2;
+    string phone = 3;
+    string userId = 4;
+}
+
+message CreateContactResponse {
+    UserContact contact = 1;
+}
+
+message CreateAddressRequest {
+    string name = 1;
+    string prefix = 2;
+    string streetAddress1 = 3;
+    string streetAddress2 = 4;
+    string city = 5;
+    string state = 6;
+    string zipCode = 7;
+    string userId = 8;
+}
+
+message CreateAddressResponse {
+    UserAddress address = 1;
+}
+
+service UserService {
+    rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+    rpc CreateContact(CreateContactRequest) returns (CreateContactResponse);
+    rpc CreateAddress(CreateAddressRequest) returns (CreateAddressResponse);
+    rpc GetUsers(GetUsersRequest) returns (GetUsersResponse);
+}

@@ -1,0 +1,8 @@
+[mysql]
+dbname  = "graphql_grpc_app"
+host    = "localhost"
+port    = 33061
+user    = "root"
+pass    = "test123"
+sslmode = "false"
+blacklist = ["sys", "information_schema", "performance_schema", "mysql"]
