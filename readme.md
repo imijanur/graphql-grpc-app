@@ -100,3 +100,79 @@ Before you begin, ensure you have met the following requirements:
 
 2. gRPC Server: The gRPC server is running on port `50051`.
 
+## GraphQL API
+
+### Queries
+Below are some example queries you can use in the GraphQL playground.
+
+#### Get users with customization
+```graphql
+query {
+  users {
+    id
+    contact{
+      phone
+    }
+    addresses{
+      city
+    }
+  }
+}
+```
+
+### Default limit is 10 and offset is 0
+
+Custom query with params
+```graphql
+query {
+  users(limit:30, offset:55) {
+    id
+    contact{
+      phone
+    }
+    addresses{
+      city
+    }
+  }
+}
+```
+
+### Create a user
+```graphql
+mutation {
+  createUser(email: "example@example.com", status: "active") {
+    id
+    email
+    status
+  }
+}
+```
+
+### Create a contact for a user
+```graphql
+mutation {
+  createContact(userId: "1", firstName: "John", lastName: "Doe", phone: "123-456-7890") {
+    id
+    userId
+    firstName
+    lastName
+    phone
+  }
+}
+```
+
+### Create an address
+```graphql
+mutation {
+  createAddress(userId: "1", street: "123 Main St", city: "Anytown", state: "CA", zip: "12345") {
+    id
+    userId
+    street
+    city
+    state
+    zip
+  }
+}
+```
+
+
